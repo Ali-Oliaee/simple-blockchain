@@ -1,4 +1,4 @@
-const SHA256 = require("crypto-js");
+const SHA256 = require("crypto-js/sha256");
 const EC = require("elliptic").ec;
 const ec = new EC("secp256k1");
 
@@ -9,9 +9,8 @@ class Transaction {
     this.amount = amount;
   }
 
-  calculateHash() {
-    return SHA256(this.fromAddress + this.toAddress + this.amount).toString();
-  }
+  calculateHash = () =>
+    SHA256(this.fromAddress + this.toAddress + this.amount).toString();
 
   signTransaction(signingKey) {
     if (signingKey.getPublic("hex") !== this.fromAddress)
@@ -24,7 +23,6 @@ class Transaction {
 
   isValid() {
     if (this.fromAddress === null) return true;
-
     if (!this.signature || this.signature.length === 0)
       throw new Error("no signature in this transaction!");
 
@@ -42,11 +40,13 @@ class Block {
     this.nonce = 0;
   }
 
-  calculateHash() {
-    return SHA256(
-      this.timestamp + JSON.stringify(this.transactions) + this.nonce
+  calculateHash = () =>
+    SHA256(
+      this.previousHash +
+        this.timestamp +
+        JSON.stringify(this.transactions) +
+        this.nonce
     ).toString();
-  }
 
   mineBlock(difficulty) {
     while (
@@ -60,7 +60,7 @@ class Block {
   }
 
   hasValidTransactions() {
-    for (const tx in this.transactions) if (!tx.isValid) return false;
+    for (const tx of this.transactions) if (!tx.isValid()) return false;
     return true;
   }
 }
@@ -68,18 +68,14 @@ class Block {
 class Blockchain {
   constructor() {
     this.chain = [this.createGenesisBlock()];
-    this.difficulty = 4;
+    this.difficulty = 2;
     this.pendingTransactions = [];
     this.miningReward = 100;
   }
 
-  createGenesisBlock() {
-    return new Block("01/01/2022", "Genesis block", "0");
-  }
+  createGenesisBlock = () => new Block("01/01/2022", "Genesis block", "0");
 
-  getLatestBlock() {
-    return this.chain[this.chain.length - 1];
-  }
+  getLatestBlock = () => this.chain[this.chain.length - 1];
 
   minePendingTransactions(miningRewardAddress) {
     let block = new Block(Date.now(), this.pendingTransactions);
@@ -126,5 +122,5 @@ class Blockchain {
   }
 }
 
-module.export.Blockchain = Blockchain;
-module.export.Transaction = Transaction;
+module.exports.Blockchain = Blockchain;
+module.exports.Transaction = Transaction;
