@@ -16,3 +16,13 @@ class Block {
     ).toString();
   }
 }
+
+class Blockchain {
+  constructor() {
+    this.chain = [this.createGenesisBlock()];
+  }
+
+  createGenesisBlock() {
+    return new Block(0, "01/01/2022", "Genesis block", "0");
+  }
+}
