@@ -1,10 +1,35 @@
-const SHA256 = require("crypto-js/sha256");
+const SHA256 = require("crypto-js");
+const EC = require("elliptic").ec;
+const ec = new EC("secp256k1");
 
 class Transaction {
   constructor(fromAddress, toAddress, amount) {
     this.fromAddress = fromAddress;
     this.toAddress = toAddress;
     this.amount = amount;
+  }
+
+  calculateHash() {
+    return SHA256(this.fromAddress + this.toAddress + this.amount).toString();
+  }
+
+  signTransaction(signingKey) {
+    if (signingKey.getPublic("hex") !== this.fromAddress)
+      throw new Error("you can not sign transactions for other wallets!");
+
+    const hashTx = this.calculateHash();
+    const sig = signingKey.sign(hashTx, "base64");
+    this.signature = sig.toDER("hex");
+  }
+
+  isValid() {
+    if (this.fromAddress === null) return true;
+
+    if (!this.signature || this.signature.length === 0)
+      throw new Error("no signature in this transaction!");
+
+    const publicKey = ec.keyFromPublic(this.fromAddress, "hex");
+    return publicKey.verify(this.calculateHash(), this.signature);
   }
 }
 
@@ -32,6 +57,11 @@ class Block {
     }
 
     console.log("Block mined: ", this.hash);
+  }
+
+  hasValidTransactions() {
+    for (const tx in this.transactions) if (!tx.isValid) return false;
+    return true;
   }
 }
 
@@ -63,7 +93,11 @@ class Blockchain {
     ];
   }
 
-  createTransaction(transaction) {
+  addTransaction(transaction) {
+    if (!transaction.fromAddress || !transaction.toAddress)
+      throw new Error("transaction must have to and from addresses!");
+    if (!transaction.isValid()) throw new Error("transaction must be valid!");
+
     this.pendingTransactions.push(transaction);
   }
 
@@ -84,6 +118,7 @@ class Blockchain {
       const currentBlock = this.chain[i];
       const previousBlock = this.chain[i - 1];
 
+      if (!currentBlock.hasValidTransactions()) return false;
       if (currentBlock.hash !== currentBlock.calculateHash()) return false;
       if (currentBlock.previousHash !== previousBlock.hash) return false;
     }
@@ -91,15 +126,5 @@ class Blockchain {
   }
 }
 
-let myShitCoin = new Blockchain();
-
-myShitCoin.createTransaction(new Transaction("ad1", "ad2", 100));
-myShitCoin.createTransaction(new Transaction("ad2", "ad1", 50));
-
-console.log("starting miner...");
-myShitCoin.minePendingTransactions("kif pool mmd");
-
-console.log("starting miner2...");
-myShitCoin.minePendingTransactions("kif pool mmd");
-
-console.log("mojoodi mmd: ", myShitCoin.getBalance("kif pool mmd"));
+module.export.Blockchain = Blockchain;
+module.export.Transaction = Transaction;
