@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Container, Form, InputGroup } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 
 function CreateTransactionPage() {
   const [validated, setValidated] = useState(false);
