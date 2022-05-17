@@ -1,8 +1,11 @@
 import { Table } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 function TransactionsTable({ transactions = [] }) {
   return (
-    <Table striped bordered hover>
+    <Table striped bordered hover responsive className="text-center">
       <thead>
         <tr>
           <th>Id</th>
@@ -10,7 +13,7 @@ function TransactionsTable({ transactions = [] }) {
           <th>To</th>
           <th>Amount</th>
           <th>Timestamp</th>
-          <th>valid?</th>
+          <th>valid</th>
         </tr>
       </thead>
       <tbody>
@@ -18,10 +21,18 @@ function TransactionsTable({ transactions = [] }) {
           <tr key={transaction.id}>
             <td>{transaction.id}</td>
             <td>{transaction.from}</td>
-            <td>{transaction.to}</td>
+            <td>
+              <a href="/">{transaction.to}</a>
+            </td>
             <td>{transaction.amount}</td>
             <td>{transaction.timestamp}</td>
-            <td>{transaction.valid}</td>
+            <td>
+              {transaction.valid ? (
+                <FontAwesomeIcon icon={faCheck} />
+              ) : (
+                <FontAwesomeIcon icon={faXmark} />
+              )}
+            </td>
           </tr>
         ))}
       </tbody>
