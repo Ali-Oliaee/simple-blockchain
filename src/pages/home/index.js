@@ -1,35 +1,132 @@
+import { useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import BlockCard from "../../components/block-card";
 import TransactionsContainer from "../../components/transactions-container";
 
-const sampleTransactions = [
-  {
+const blocks = {
+  block1: {
     id: 1,
-    from: "0",
-    to: "1",
-    amount: "10",
-    timestamp: "1568468164",
-    valid: true,
+    title: "Block1",
+    description: "genesis block",
+    hash: "cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv",
+    previousHash: "0",
+    nonce: "0",
+    timestamp: "468468164",
+    transactions: [
+      {
+        id: 1,
+        title: "Transaction1",
+        description: "Transaction1",
+        hash: "cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv",
+        previousHash: "0",
+        nonce: "0",
+        timestamp: "468468164",
+        from: "ali",
+        to: "ahmed",
+        amount: "100",
+        valid: true,
+      },
+      {
+        id: 2,
+        title: "Transaction2",
+        description: "Transaction2",
+        hash: "cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv",
+        previousHash: "0",
+        nonce: "0",
+        timestamp: "468468164",
+        from: "ali",
+        to: "ahmed",
+        amount: "100",
+        valid: false,
+      },
+      {
+        id: 3,
+        title: "Transaction3",
+        description: "Transaction3",
+        hash: "cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv",
+        previousHash: "0",
+        nonce: "0",
+        timestamp: "468468164",
+        from: "ali",
+        to: "ahmed",
+        amount: "100",
+        valid: true,
+      },
+    ],
   },
-  {
+  block2: {
     id: 2,
-    from: "1",
-    to: "2",
-    amount: "10",
-    timestamp: "1568468164",
-    valid: true,
+    title: "Block2",
+    hash: "cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv",
+    previousHash: "cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv",
+    nonce: "0",
+    timestamp: "468468164",
+    transactions: [
+      {
+        id: 1,
+        title: "Transaction1",
+        description: "Transaction1",
+        hash: "cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv",
+        nonce: "0",
+        timestamp: "468468164",
+        from: "ali",
+        to: "ahmed",
+        amount: "100",
+        valid: true,
+      },
+      {
+        id: 2,
+        title: "Transaction2",
+        description: "Transaction2",
+        hash: "cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv",
+        nonce: "0",
+        timestamp: "468468164",
+        from: "ali",
+        to: "ahmed",
+        amount: "320",
+        valid: false,
+      },
+    ],
   },
-  {
+  block3: {
     id: 3,
-    from: "2",
-    to: "3",
-    amount: "10",
-    timestamp: "1568468164",
-    valid: false,
+    title: "Block3",
+    hash: "cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv",
+    previousHash: "cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv",
+    nonce: "0",
+    timestamp: "468468164",
+    transactions: [
+      {
+        id: 1,
+        title: "Transaction1",
+        description: "Transaction1",
+        hash: "cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv",
+        nonce: "0",
+        timestamp: "468468164",
+        from: "ali",
+        to: "ahmed",
+        amount: "80",
+        valid: true,
+      },
+      {
+        id: 2,
+        title: "Transaction2",
+        description: "Transaction2",
+        hash: "cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv",
+        nonce: "0",
+        timestamp: "468468164",
+        from: "ali",
+        to: "ahmed",
+        amount: "50",
+        valid: false,
+      },
+    ],
   },
-];
+};
 
 function HomePage() {
+  const [block, setBlock] = useState(blocks.block1);
+
   return (
     <div className="home-page">
       <Container fluid>
@@ -46,6 +143,7 @@ function HomePage() {
             previousHash="0"
             nonce="0"
             timestamp="468468164"
+            onClick={() => setBlock(blocks.block1)}
           />
           <BlockCard
             title="Block2"
@@ -53,6 +151,7 @@ function HomePage() {
             previousHash="cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv"
             nonce="0"
             timestamp="468468164"
+            onClick={() => setBlock(blocks.block2)}
           />
           <BlockCard
             title="Block2"
@@ -60,11 +159,12 @@ function HomePage() {
             previousHash="cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv"
             nonce="0"
             timestamp="468468164"
+            onClick={() => setBlock(blocks.block3)}
           />
         </Row>
       </Container>
       <Container fluid>
-        <TransactionsContainer block={5} transactions={sampleTransactions} />
+        <TransactionsContainer block={5} transactions={block.transactions} />
       </Container>
     </div>
   );

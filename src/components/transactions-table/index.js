@@ -19,7 +19,9 @@ function TransactionsTable({ transactions = [] }) {
         {transactions.map((transaction) => (
           <tr key={transaction.id}>
             <td>{transaction.id}</td>
-            <td>{transaction.from}</td>
+            <td>
+              <a href="/">{transaction.from}</a>
+            </td>
             <td>
               <a href="/">{transaction.to}</a>
             </td>

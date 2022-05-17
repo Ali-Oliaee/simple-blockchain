@@ -8,10 +8,11 @@ function BlockCard({
   previousHash,
   nonce,
   timestamp,
+  onClick,
 }) {
   return (
     <Col className="mb-4">
-      <Card>
+      <Card onClick={onClick}>
         <Card.Header>
           <Card.Title>{title}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
