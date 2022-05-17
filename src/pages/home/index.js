@@ -1,5 +1,4 @@
 import { Container, Row } from "react-bootstrap";
-import Header from "../../components/header";
 import BlockCard from "../../components/block-card";
 import TransactionsContainer from "../../components/transactions-container";
 
@@ -33,7 +32,6 @@ const sampleTransactions = [
 function HomePage() {
   return (
     <div className="home-page">
-      <Header />
       <Container fluid>
         <h2 className="font-weight-bold">Blocks on chain</h2>
         <h6>

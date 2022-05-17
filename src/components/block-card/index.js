@@ -1,4 +1,5 @@
 import { Card, Col, ListGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function BlockCard({
   title,
@@ -20,12 +21,16 @@ function BlockCard({
         <ListGroup variant="flush">
           <ListGroup.Item>
             <Card.Title>Hash</Card.Title>
-            <Card.Link>{hash}</Card.Link>
+            <Card.Link as={Link} to={`transaction/${hash}`}>
+              {hash}
+            </Card.Link>
             <Card.Title>Hash of previous block</Card.Title>
             {previousHash === "0" ? (
               <Card.Text>0</Card.Text>
             ) : (
-              <Card.Link>{previousHash}</Card.Link>
+              <Card.Link as={Link} to={`transaction/${previousHash}`}>
+                {previousHash}
+              </Card.Link>
             )}
           </ListGroup.Item>
           <ListGroup.Item>

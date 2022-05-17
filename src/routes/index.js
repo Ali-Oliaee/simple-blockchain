@@ -4,6 +4,7 @@ import HomePage from "../pages/home";
 import NotFoundPage from "../pages/not-found";
 import PendingTransactionsPage from "../pages/pending-transactions";
 import SettingsPage from "../pages/settings";
+import TransactionPage from "../pages/transaction";
 
 function MainRouter() {
   return (
@@ -15,7 +16,7 @@ function MainRouter() {
         path="/pending-transactions"
         element={<PendingTransactionsPage />}
       />
-      <Route path="/transaction/:id" element={<SettingsPage />} />
+      <Route path="/transaction/:id" element={<TransactionPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
