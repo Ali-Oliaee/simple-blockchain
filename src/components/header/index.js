@@ -11,13 +11,13 @@ function Header() {
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll" className="justify-content-end">
           <Nav navbarScroll>
-            <Nav.Link to="/settings" as={Link}>
+            <Nav.Link to="/settings" as={Link} tabIndex={-1}>
               <Button variant="outline-light">Settings</Button>
             </Nav.Link>
-            <Nav.Link to="/new-transaction" as={Link}>
+            <Nav.Link to="/new-transaction" as={Link} tabIndex={-1}>
               <Button variant="outline-light">Create transaction</Button>
             </Nav.Link>
-            <Nav.Link to="/pending-transactions" as={Link}>
+            <Nav.Link to="/pending-transactions" as={Link} tabIndex={-1}>
               <Button variant="outline-light">Pending transactions</Button>
             </Nav.Link>
           </Nav>
