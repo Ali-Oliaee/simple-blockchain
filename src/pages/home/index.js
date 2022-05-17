@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import BlockCard from "../../components/block-card";
-import TransactionsContainer from "../../components/transactions-container";
 import TransactionsTable from "../../components/transactions-table";
 
 const blocks = {
@@ -137,31 +136,17 @@ function HomePage() {
           transactions stored inside.
         </h6>
         <Row>
-          <BlockCard
-            title="Block1"
-            description="genesis block"
-            hash="cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv"
-            previousHash="0"
-            nonce="0"
-            timestamp="468468164"
-            onClick={() => setBlock(blocks.block1)}
-          />
-          <BlockCard
-            title="Block2"
-            hash="cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv"
-            previousHash="cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv"
-            nonce="0"
-            timestamp="468468164"
-            onClick={() => setBlock(blocks.block2)}
-          />
-          <BlockCard
-            title="Block2"
-            hash="cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv"
-            previousHash="cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv"
-            nonce="0"
-            timestamp="468468164"
-            onClick={() => setBlock(blocks.block3)}
-          />
+          {Object.entries(blocks).map((block) => (
+            <BlockCard
+              title={block[1].title}
+              description={block[1].description}
+              hash={block[1].hash}
+              previousHash={block[1].previousHash}
+              nonce={block[1].nonce}
+              timestamp={block[1].timestamp}
+              onClick={() => setBlock(block[1])}
+            />
+          ))}
         </Row>
       </Container>
       <Container fluid>

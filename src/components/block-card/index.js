@@ -16,7 +16,7 @@ function BlockCard({
         <Card.Header>
           <Card.Title>{title}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
-            {description}
+            {description ?? "(no description)"}
           </Card.Subtitle>
         </Card.Header>
         <ListGroup variant="flush">
