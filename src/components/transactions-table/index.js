@@ -1,6 +1,7 @@
 import { Table } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 function TransactionsTable({ transactions = [] }) {
   return (
@@ -20,10 +21,10 @@ function TransactionsTable({ transactions = [] }) {
           <tr key={transaction.id}>
             <td>{transaction.id}</td>
             <td>
-              <a href="/">{transaction.from}</a>
+              <Link to={`/wallet/${transaction.from}`}>{transaction.from}</Link>
             </td>
             <td>
-              <a href="/">{transaction.to}</a>
+              <Link to={`/wallet/${transaction.to}`}>{transaction.to}</Link>
             </td>
             <td>{transaction.amount}</td>
             <td>

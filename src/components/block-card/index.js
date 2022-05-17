@@ -22,17 +22,9 @@ function BlockCard({
         <ListGroup variant="flush">
           <ListGroup.Item>
             <Card.Title>Hash</Card.Title>
-            <Card.Link as={Link} to={`transaction/${hash}`}>
-              {hash}
-            </Card.Link>
+            <Card.Text className="text-success">{hash}</Card.Text>
             <Card.Title>Hash of previous block</Card.Title>
-            {previousHash === "0" ? (
-              <Card.Text>0</Card.Text>
-            ) : (
-              <Card.Link as={Link} to={`transaction/${previousHash}`}>
-                {previousHash}
-              </Card.Link>
-            )}
+            <Card.Text className="text-success">{previousHash}</Card.Text>
           </ListGroup.Item>
           <ListGroup.Item>
             <Card.Title>Nonce</Card.Title>
