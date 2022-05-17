@@ -27,12 +27,18 @@ function TransactionsTable({ transactions = [] }) {
             </td>
             <td>{transaction.amount}</td>
             <td>
-              {transaction.timestamp}
-              <br />
               <span>
-                {new Date(+transaction.timestamp).toLocaleDateString() +
-                  " " +
-                  new Date(+transaction.timestamp).toLocaleTimeString()}
+                {new Date(+transaction.timestamp).toLocaleDateString(
+                  undefined,
+                  {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  }
+                )}
+                <br />
+                {new Date(+transaction.timestamp).toLocaleTimeString()}
               </span>
             </td>
             <td>
