@@ -138,6 +138,7 @@ function HomePage() {
         <Row>
           {Object.entries(blocks).map((block) => (
             <BlockCard
+              key={block[1].id}
               title={block[1].title}
               description={block[1].description}
               hash={block[1].hash}

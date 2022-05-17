@@ -38,12 +38,7 @@ function CreateTransactionPage() {
           </p>
           <h5>To address</h5>
           <Form.Group className="mb-3">
-            <Form.Control
-              required
-              type="text"
-              placeholder="Enter address"
-              controlId="validationCustom01"
-            />
+            <Form.Control required type="text" placeholder="Enter address" />
             <Form.Control.Feedback type="invalid">
               Please enter a valid address.
             </Form.Control.Feedback>
