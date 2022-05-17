@@ -26,7 +26,15 @@ function TransactionsTable({ transactions = [] }) {
               <a href="/">{transaction.to}</a>
             </td>
             <td>{transaction.amount}</td>
-            <td>{transaction.timestamp}</td>
+            <td>
+              {transaction.timestamp}
+              <br />
+              <span>
+                {new Date(+transaction.timestamp).toLocaleDateString() +
+                  " " +
+                  new Date(+transaction.timestamp).toLocaleTimeString()}
+              </span>
+            </td>
             <td>
               {transaction.valid ? (
                 <FontAwesomeIcon icon={faCheck} />
