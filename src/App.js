@@ -4,6 +4,33 @@ import BlockCard from "./components/block-card";
 import Header from "./components/header";
 import TransactionsContainer from "./components/transactions-container";
 
+const sampleTransactions = [
+  {
+    id: 1,
+    from: "0",
+    to: "1",
+    amount: "10",
+    timestamp: "1568468164",
+    valid: true,
+  },
+  {
+    id: 2,
+    from: "1",
+    to: "2",
+    amount: "10",
+    timestamp: "1568468164",
+    valid: true,
+  },
+  {
+    id: 3,
+    from: "2",
+    to: "3",
+    amount: "10",
+    timestamp: "1568468164",
+    valid: false,
+  },
+];
+
 function App() {
   return (
     <div className="App">
@@ -40,7 +67,7 @@ function App() {
         </Row>
       </Container>
       <Container fluid>
-        <TransactionsContainer block={5} />
+        <TransactionsContainer block={5} transactions={sampleTransactions} />
       </Container>
     </div>
   );
