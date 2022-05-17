@@ -1,7 +1,6 @@
 import { Table } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
 
 function TransactionsTable({ transactions = [] }) {
   return (
