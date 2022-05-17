@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import BlockCard from "../../components/block-card";
 import TransactionsContainer from "../../components/transactions-container";
+import TransactionsTable from "../../components/transactions-table";
 
 const blocks = {
   block1: {
@@ -164,7 +165,8 @@ function HomePage() {
         </Row>
       </Container>
       <Container fluid>
-        <TransactionsContainer block={5} transactions={block.transactions} />
+        <h2>Transactions inside {block.title}</h2>
+        <TransactionsTable transactions={block.transactions} />
       </Container>
     </div>
   );
