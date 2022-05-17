@@ -1,7 +1,7 @@
 import { Container, Row } from "react-bootstrap";
-import Header from "../../components/header/index";
-import BlockCard from "../../components/block-card/index";
-import TransactionsContainer from "../../components/transactions-container/index";
+import Header from "../../components/header";
+import BlockCard from "../../components/block-card";
+import TransactionsContainer from "../../components/transactions-container";
 
 const sampleTransactions = [
   {

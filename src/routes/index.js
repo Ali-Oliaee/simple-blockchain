@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import CreateTransactionPage from "../pages/create-transaction";
 import HomePage from "../pages/home";
+import NotFoundPage from "../pages/not-found";
 import PendingTransactionsPage from "../pages/pending-transactions";
 import SettingsPage from "../pages/settings";
 
@@ -15,6 +16,7 @@ function MainRouter() {
         element={<PendingTransactionsPage />}
       />
       <Route path="/transaction/:id" element={<SettingsPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }
