@@ -1,7 +1,7 @@
 import { Card, Col, ListGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 function BlockCard({
+  id,
   title,
   description,
   hash,
@@ -9,10 +9,11 @@ function BlockCard({
   nonce,
   timestamp,
   onClick,
+  bordered,
 }) {
   return (
     <Col className="mb-4">
-      <Card onClick={onClick}>
+      <Card onClick={onClick} className={bordered[id - 1] && "border-primary"}>
         <Card.Header>
           <Card.Title>{title}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">

@@ -12,6 +12,7 @@ function WalletPage() {
       <h3>Balance: </h3>
       <span>{1200}</span>
       <hr />
+      <h1>Transactions:</h1>
       <TransactionTable />
     </div>
   );

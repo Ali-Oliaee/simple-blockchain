@@ -10,6 +10,7 @@ const blocks = {
     description: "genesis block",
     hash: "cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv",
     previousHash: "0",
+    bordered: true,
     nonce: "0",
     timestamp: "1652799797",
     transactions: [
@@ -60,6 +61,7 @@ const blocks = {
     hash: "cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv",
     previousHash: "cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv",
     nonce: "0",
+    bordered: false,
     timestamp: "1652799797",
     transactions: [
       {
@@ -94,6 +96,7 @@ const blocks = {
     hash: "cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv",
     previousHash: "cs6ac468v46sb84g6b4ddvsfd8646f4sv1d534v54df7vsdv",
     nonce: "0",
+    bordered: false,
     timestamp: "1652799797",
     transactions: [
       {
@@ -136,16 +139,23 @@ function HomePage() {
           transactions stored inside.
         </h6>
         <Row>
-          {Object.entries(blocks).map((block) => (
+          {Object.entries(blocks).map((mappedBlock) => (
             <BlockCard
-              key={block[1].id}
-              title={block[1].title}
-              description={block[1].description}
-              hash={block[1].hash}
-              previousHash={block[1].previousHash}
-              nonce={block[1].nonce}
-              timestamp={block[1].timestamp}
-              onClick={() => setBlock(block[1])}
+              key={mappedBlock[1].id}
+              title={mappedBlock[1].title}
+              description={mappedBlock[1].description}
+              hash={mappedBlock[1].hash}
+              previousHash={mappedBlock[1].previousHash}
+              nonce={mappedBlock[1].nonce}
+              timestamp={mappedBlock[1].timestamp}
+              onClick={() => setBlock(mappedBlock[1])}
+              bordered={Object.entries(blocks).map((searchBlock) => {
+                if (searchBlock[1].id === block.id)
+                  searchBlock[1].bordered = true;
+                else searchBlock[1].bordered = false;
+                return searchBlock[1].bordered;
+              })}
+              id={mappedBlock[1].id}
             />
           ))}
         </Row>
