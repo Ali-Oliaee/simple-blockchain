@@ -84,7 +84,7 @@ class Blockchain {
     this.miningReward = 100;
   }
 
-  createGenesisBlock = () => new Block(0, Date.now(), "genesis block", "0");
+  createGenesisBlock = () => new Block(Date.now(), "genesis block", "0");
   getLatestBlock = () => this.chain[this.chain.length - 1];
 
   minePendingTransactions(miningRewardAddress) {
@@ -131,13 +131,4 @@ class Blockchain {
   }
 }
 
-const shitCoin = new Blockchain();
-
-const tx1 = new Transaction(myWalletAddress, "public key", 10);
-tx1.signTransaction(myKey);
-shitCoin.addTransaction(tx1);
-
-console.log("starting miner...");
-shitCoin.minePendingTransactions(myWalletAddress);
-
-console.log("chain is valid? ", shitCoin.isChainValid());
+module.exports = Blockchain;

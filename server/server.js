@@ -1,12 +1,14 @@
 const express = require("express");
 const cors = require("cors");
+const Blockchain = require("./blockchain");
 
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT ?? 8000;
 app.use(cors());
+const shitCoin = new Blockchain();
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
+app.get("/get-blocks/", (req, res) => {
+  res.send(shitCoin.chain);
 });
 
 app.listen(PORT, () => {

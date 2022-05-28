@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Container, Row } from "react-bootstrap";
+import { useQuery } from "react-query";
 import BlockCard from "../../components/block-card";
 import TransactionsTable from "../../components/transactions-table";
+import { getBlocks } from "../../utils/api";
 
 const blocks = {
   block1: {
@@ -129,6 +131,8 @@ const blocks = {
 
 function HomePage() {
   const [block, setBlock] = useState(blocks.block1);
+  const { data, isLoading } = useQuery("blocks", getBlocks);
+  console.log("data", data);
 
   return (
     <div className="home-page">

@@ -256,10 +256,10 @@ cors@^2.8.5:
     object-assign "^4"
     vary "^1"
 
-crypt-js@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/crypt-js/-/crypt-js-1.0.4.tgz#129ddcfd8ec10000522181ecdb9f7d38b519979f"
-  integrity sha512-9O9EEoVvr5aUf0bYHNAx8iX5ADgpep2EzZK8kJn1TRStgPMFpnET36pt9Jbhwpt1OnwNwXksyKmTkeZv1QLXzg==
+crypto-js@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.1.1.tgz#9e485bcf03521041bd85844786b83fb7619736cf"
+  integrity sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==
 
 crypto-random-string@^2.0.0:
   version "2.0.0"
