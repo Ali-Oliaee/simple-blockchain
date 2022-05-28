@@ -12,18 +12,19 @@ const myKey = ec.keyFromPrivate(
 const myWalletAddress = myKey.getPublic("hex");
 
 class Transaction {
-  constructor(fromAddress, toAddress, amount) {
+  constructor(fromAddress, toAddress, amount, timestamp = Date.now()) {
     this.fromAddress = fromAddress;
     this.toAddress = toAddress;
     this.amount = amount;
+    this.timestamp = timestamp;
   }
 
   calculateHash = () =>
     SHA256(this.fromAddress + this.toAddress + this.amount).toString();
 
   signTransaction(signingKey) {
-    if (signingKey.getPublic("hex") !== this.fromAddress)
-      throw new Error("you cannot sign transactions from another wallets!");
+    // if (signingKey.getPublic("hex") !== this.fromAddress)
+    //   throw new Error("you cannot sign transactions from another wallets!");
 
     const hashTx = this.calculateHash();
     const sig = signingKey.sign(hashTx, "base64");
@@ -41,12 +42,13 @@ class Transaction {
 }
 
 class Block {
-  constructor(timestamp, transactions, previousHash = "") {
+  constructor(timestamp, transactions, previousHash = "", description = "") {
     this.timestamp = timestamp;
     this.transactions = transactions;
     this.nonce = 0;
     this.previousHash = previousHash;
     this.hash = this.calculateHash();
+    this.description = description;
   }
 
   calculateHash = () =>
@@ -84,7 +86,7 @@ class Blockchain {
     this.miningReward = 100;
   }
 
-  createGenesisBlock = () => new Block(Date.now(), "genesis block", "0");
+  createGenesisBlock = () => new Block(Date.now(), [], "0", "genesis block");
   getLatestBlock = () => this.chain[this.chain.length - 1];
 
   minePendingTransactions(miningRewardAddress) {
@@ -131,4 +133,5 @@ class Blockchain {
   }
 }
 
-module.exports = Blockchain;
+module.exports.Blockchain = Blockchain;
+module.exports.Transaction = Transaction;

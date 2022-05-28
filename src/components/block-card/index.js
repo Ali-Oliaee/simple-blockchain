@@ -9,11 +9,10 @@ function BlockCard({
   nonce,
   timestamp,
   onClick,
-  bordered,
 }) {
   return (
     <Col className="mb-4">
-      <Card onClick={onClick} className={bordered[id - 1] && "border-primary"}>
+      <Card onClick={onClick}>
         <Card.Header>
           <Card.Title>{title}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
