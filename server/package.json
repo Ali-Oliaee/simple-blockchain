@@ -1,0 +1,13 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "crypt-js": "^1.0.4",
+    "elliptic": "^6.5.4",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16"
+  }
+}
