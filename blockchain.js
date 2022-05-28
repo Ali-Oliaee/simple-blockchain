@@ -70,11 +70,8 @@ class Block {
   }
 
   hasValidTransactions() {
-    for (const tx of this.transactions) {
-      if (!tx.isValid()) {
-        return false;
-      }
-    }
+    for (let i = 1; i < this.transactions.length; i++)
+      if (!this.transactions[i].isValid()) return false;
     return true;
   }
 }
@@ -126,9 +123,9 @@ class Blockchain {
       const currentBlock = this.chain[i];
       const previousBlock = this.chain[i - 1];
 
-      //   if (!currentBlock.hasValidTransactions()) return false;
+      if (!currentBlock.hasValidTransactions()) return false;
       if (currentBlock.hash !== currentBlock.calculateHash()) return false;
-      //   if (currentBlock.previousHash !== previousBlock.hash) return false;
+      // if (currentBlock.previousHash !== previousBlock.hash) return false;
     }
     return true;
   }
@@ -143,5 +140,4 @@ shitCoin.addTransaction(tx1);
 console.log("starting miner...");
 shitCoin.minePendingTransactions(myWalletAddress);
 
-console.log("my balance: ", shitCoin.getBalanceOfAddress(myWalletAddress));
 console.log("chain is valid? ", shitCoin.isChainValid());
